@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<db_marketing>
+  <table name="registrationtable" text="registrationtable" object="registrationtable" pk="registrationtable.SRNO">
+    <column name="registrationtable.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="registrationtable.NAME" text="NAME" datatype="System.String" isnull="false"/>
+    <column name="registrationtable.SPONSORID" text="SPONSORID" datatype="System.Int32" isnull="false"/>
+    <column name="registrationtable.SPONSORSEMICODE" text="SPONSORSEMICODE" datatype="System.String" isnull="false"/>
+    <column name="registrationtable.SPONSORNAME" text="SPONSORNAME" datatype="System.String" isnull="false"/>
+    <column name="registrationtable.SEMICODE" text="SEMICODE" datatype="System.String" isnull="false"/>
+    <column name="registrationtable.EMAILID" text="EMAILID" datatype="System.String" isnull="false"/>
+    <column name="registrationtable.PHONENO" text="PHONENO" datatype="System.String" isnull="false"/>
+    <column name="registrationtable.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+ </table>
+  
+  <table name="reportingmaster" text="reportingmaster" object="reportingmaster" pk="reportingmaster.SRNO">
+    <column name="reportingmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="reportingmaster.RELATIONSHIPID" text="RELATIONSHIPID" datatype="System.Int32" isnull="false"/>
+    <column name="reportingmaster.DATE" text="DATE" datatype="System.String" isnull="false"/>
+    <column name="reportingmaster.NAME" text="NAME" datatype="System.String" isnull="false"/>
+    <column name="reportingmaster.CONTACTNO" text="CONTACTNO" datatype="System.String" isnull="True"/>
+    <column name="reportingmaster.ACTIVITY" text="ACTIVITY" datatype="System.String" isnull="false"/>
+    <column name="reportingmaster.RESULT" text="RESULT" datatype="System.String" isnull="True"/>
+    <column name="reportingmaster.REMARK" text="REMARK" datatype="System.String" isnull="True"/>
+    <column name="reportingmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+  
+  <table name="usertable" text="usertable" object="usertable" pk="usertable.SRNO">
+    <column name="usertable.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="usertable.NAME" text="NAME" datatype="System.String" isnull="false"/>
+    <column name="usertable.ROLE" text="ROLE" datatype="System.String" isnull="false"/>
+    <column name="usertable.USERID" text="USERID" datatype="System.String" isnull="false"/>
+    <column name="usertable.PASSWORD" text="PASSWORD" datatype="System.String" isnull="false"/>
+    <column name="usertable.RELATIONSHIPID" text="RELATIONSHIPID" datatype="System.Int32" isnull="True"/>
+    <column name="usertable.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+  
+</db_marketing>

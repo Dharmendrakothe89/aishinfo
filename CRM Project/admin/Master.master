@@ -1,0 +1,128 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Master.master.cs" Inherits="Master" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/main-style.css" rel="stylesheet" />
+    <link href="css/messagebox.css" rel="stylesheet" type="text/css" />
+    <link href="css/ValidationEngine.css" rel="stylesheet" type="text/css" />
+    <!-- Page-Level CSS -->
+    <link href="plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                <h3 style="color:#fff;">Multilevel Marketing</h3>
+                    <!--<img src="img/logo.png" alt="" />-->
+                </a>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- main dropdown -->
+                    <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-3x"></i>
+                    </a>
+                    <!-- dropdown user-->
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i><asp:Label ID="lblname" runat="server"></asp:Label></a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                       <%-- <li><a href="#"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        </li>--%>
+                         <li><asp:LinkButton ID="lnklogout" runat="server" Text="Logout" CssClass="fa fa-sign-out fa-fw" OnClick="lnklogout_Click"></asp:LinkButton>
+                        </li>
+                    </ul>
+                    <!-- end dropdown-user -->
+                </li>
+                <!-- end main dropdown -->
+            </ul>
+            <!-- end navbar-top-links -->
+
+        </nav>
+        <!-- end navbar top -->
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class="sidebar-collapse" style="margin-top:20px;">
+                <!-- side-menu -->
+                <ul class="nav" id="side-menu">
+                    <li class="selected">
+                        <a href="dashboard.aspx"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                    </li>
+                  <%--
+                     <li>
+                        <a href="#"><i class="fa fa-flask fa-fw"></i>Admin</a>
+                          <ul class="nav nav-second-level">
+                           <li>
+                                <a href="memberlist.aspx">Member List</a>
+                            </li>
+                          
+                        </ul>
+                    </li>--%>
+                    <li>
+                        <a href="#"><i class="fa fa-flask fa-fw"></i>Super Admin</a>
+                          <ul class="nav nav-second-level">
+                           <li>
+                                <a href="superadminmemberlist.aspx">New User</a>
+                            </li>
+                           <li>
+                                <a href="userlist.aspx">User List</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-edit fa-fw"></i>Report</a>
+                          <ul class="nav nav-second-level">
+                            <li>
+                                <a href="reportinglist.aspx">Reporting List</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+                  
+                       </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->
+    </div>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+    <div class="col-md-12 footer">
+        <p>
+            &copy; CopyRight 2014. All Right Reserved.</p>
+    </div>
+    <script type="text/javascript" src="plugins/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="plugins/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="plugins/pace/pace.js"></script>
+    <script type="text/javascript" src="scripts/siminta.js"></script>
+    <!-- Page-Level Plugin Scripts-->
+    <script type="text/javascript" src="plugins/morris/raphael-2.1.0.min.js"></script>
+    <script type="text/javascript" src="plugins/morris/morris.js"></script>
+    <script type="text/javascript" src="scripts/dashboard-demo.js"></script>
+    </form>
+</body>
+</html>
