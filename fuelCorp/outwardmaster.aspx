@@ -36,7 +36,7 @@
                                     <p>
                                         <strong>DATE</strong>
                                     </p>
-                                    <asp:TextBox ID="txtdate" runat="server" CssClass="form-control validate[required]"></asp:TextBox>
+                                    <asp:TextBox ID="txtdate" runat="server" CssClass="form-control" onkeyup="DateFormatValidation(this.id,this.value);" MaxLength="10" onkeypress="return isNumberWthOutDot(event);"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
