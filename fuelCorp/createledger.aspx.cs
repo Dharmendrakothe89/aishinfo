@@ -136,7 +136,7 @@ public partial class createledger : System.Web.UI.Page
                     DataTable dttransaction = hdntransaction.GetTable(sqltransaction);
                     for(int i=0;i<2;i++)
                     {
-                        transactiondetails objtransactiondetails = new transactiondetails(HttpContext.Current.Server.MapPath("~/XML/database.xml"));
+                        TransactionDetailsC objtransactiondetails = new TransactionDetailsC(HttpContext.Current.Server.MapPath("~/XML/database.xml"));
                         if (i == 0)
                         {
                             objtransactiondetails.transactiondetails_LTRNTYPE = objtransaction.transactiontable_LTRNTYPE1.ToString();

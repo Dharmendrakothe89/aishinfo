@@ -10,9 +10,9 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-public class transactiondetails
+public class TransactionDetailsC
 {
-	public transactiondetails()
+	public TransactionDetailsC()
 	{
 		//
 		// TODO: Add constructor logic here
@@ -21,7 +21,7 @@ public class transactiondetails
 
      Handler objHandler = new Handler();
     string xmlpath;
-    public transactiondetails(string xmlpathh)
+    public TransactionDetailsC(string xmlpathh)
     {
         xmlpath = xmlpathh;
     }
