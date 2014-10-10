@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-
-
+using System.Collections;
+using System.Data.SqlClient;
 public partial class quotationdetail : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -32,6 +32,7 @@ public partial class quotationdetail : System.Web.UI.Page
         txtdate.Enabled = false;
         txtexpirydate.Enabled = false;
         txtrefno.Enabled = false;
+        ddlparty.Enabled = false;
         ddlcoalsource.Enabled = false;
         txtcode.Enabled = false;
         txtaddress.Enabled = false;
@@ -95,10 +96,11 @@ public partial class quotationdetail : System.Web.UI.Page
         txtmoistureerror.Enabled = true;
         ddlcoaltax.Enabled = true;
         btntaxsubmit.Enabled = true;
-        txtfinalcoalcost.Enabled = true;
-        txtfinaltax.Enabled = true;
+
+        //txtfinalcoalcost.Enabled = true;
+        //txtfinaltax.Enabled = true;
         txttransportationcost.Enabled = true;
-        txtgrandtotal.Enabled = true;
+        //txtgrandtotal.Enabled = true;
         chktermslist.Enabled = true;
         btnsubmit.Visible = true;
 
@@ -123,8 +125,13 @@ public partial class quotationdetail : System.Web.UI.Page
 
         txtcoalquantity.Text = dt1.Rows[0]["COALQUANTITY"].ToString().Trim();
         txtcoalrate.Text = dt1.Rows[0]["COALRATE"].ToString().Trim();
-        ddlcoaltype.SelectedValue = dt1.Rows[0]["COALTYPEID"].ToString().Trim();
-        FillCoalGrade(dt1.Rows[0]["COALTYPEID"].ToString().Trim());
+
+        string sqlgrade = "SELECT CM.SRNO FROM COALMASTER CM WHERE CM.SRNO=(SELECT COALTYPEID FROM COALMASTER CM1 WHERE CM1.SRNO=" + dt1.Rows[0]["COALTYPEID"].ToString().Trim() + ")";
+        Handler hdngrade = new Handler();
+        DataTable dtgrade = hdngrade.GetTable(sqlgrade);
+        ddlcoaltype.SelectedValue = dtgrade.Rows[0]["SRNO"].ToString().Trim();
+        FillCoalGrade(dtgrade.Rows[0]["SRNO"].ToString().Trim());
+        ddlcoalgrade.SelectedValue = dt1.Rows[0]["COALTYPEID"].ToString().Trim();
 
         txtcoalsizemin.Text = dt1.Rows[0]["COALSIZEMIN"].ToString().Trim();
         txtcoalsizemax.Text = dt1.Rows[0]["COALSIZEMAX"].ToString().Trim();
@@ -240,13 +247,7 @@ public partial class quotationdetail : System.Web.UI.Page
         ddlcoaltax.Items.Insert(0, "-- Tax --");
 
 
-        string sqlterms = "SELECT TM.SRNO,TM.TERMS FROM TERMSCONDITION TM WHERE TM.STATUS=0 AND (CATEGORY='QUOTATION' OR CATEGORY='ALL')";
-        Handler hdnterms = new Handler();
-        DataTable dtterms = hdnterms.GetTable(sqlterms);
-        chktermslist.DataSource = dtterms;
-        chktermslist.DataTextField = "TERMS";
-        chktermslist.DataValueField = "SRNO";
-        chktermslist.DataBind();
+        
     }
     protected void ddlcoaltype_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -270,6 +271,13 @@ public partial class quotationdetail : System.Web.UI.Page
     protected void btnedit_Click(object sender, EventArgs e)
     {
         EnableControl();
+        string sqlterms = "SELECT TM.SRNO,TM.TERMS FROM TERMSCONDITION TM WHERE TM.STATUS=0 AND (CATEGORY='QUOTATION' OR CATEGORY='ALL')";
+        Handler hdnterms = new Handler();
+        DataTable dtterms = hdnterms.GetTable(sqlterms);
+        chktermslist.DataSource = dtterms;
+        chktermslist.DataTextField = "TERMS";
+        chktermslist.DataValueField = "SRNO";
+        chktermslist.DataBind();
         trtax1.Style.Add("display", "block");
         trtax2.Style.Add("display", "block");
     }
@@ -339,15 +347,12 @@ public partial class quotationdetail : System.Web.UI.Page
         objquotation.quotationmaster_TRANSPORTATIONCOST = General.Parse<double>(txttransportationcost.Text.Trim().ToString());
         objquotation.quotationmaster_TOTALCOST = General.Parse<double>(txtfinalcoalcost.Text.Trim().ToString());
         objquotation.quotationmaster_STATUS = 0;
-        if (objquotation.Insert(true, "quotationmaster"))
+        string condition = "QUOTATIONID=" + ViewState["QUOTATIONID"].ToString();
+        if (objquotation.Insert(false, "quotationmaster", condition))
         {
-            string sqlmax = "SELECT MAX(QUOTATIONID) AS QUOTATIONID FROM QUOTATIONMASTER GM WHERE PARTYID=" + partyid;
-            Handler hdnmax = new Handler();
-            DataTable dtmax = hdnmax.GetTable(sqlmax);
-
             quotationspecification objspecification = new quotationspecification(HttpContext.Current.Server.MapPath("~/XML/database.xml"));
             objspecification.quotationspecification_SRNO = -1;
-            objspecification.quotationspecification_QUOTATIONID = General.Parse<int>(dtmax.Rows[0][0].ToString());
+            objspecification.quotationspecification_QUOTATIONID = -1;
             objspecification.quotationspecification_COALTYPE = ddlcoalgrade.SelectedItem.Text;
             objspecification.quotationspecification_COALTYPEID = General.Parse<int>(ddlcoalgrade.SelectedValue.ToString());
             objspecification.quotationspecification_COALSOURCE = ddlcoalsource.SelectedItem.Text;
@@ -360,9 +365,17 @@ public partial class quotationdetail : System.Web.UI.Page
             objspecification.quotationspecification_GCVERROR = General.Parse<double>(txtgcv.Text.Trim().ToString());
             objspecification.quotationspecification_MOISTURE = General.Parse<double>(txtmoisture.Text.Trim().ToString());
             objspecification.quotationspecification_MOISTUREERROR = General.Parse<double>(txtmoistureerror.Text.Trim().ToString());
-            if (objspecification.Insert(true, "quotationspecification"))
+            if (objspecification.Insert(false, "quotationspecification", condition))
             {
             }
+            SqlConnection Connection = new SqlConnection("Data Source=50.28.62.129,1433;Network Library=DBMSSOCN;Initial Catalog=db_fuel;User ID=fuel;Password= lSa2@11h");
+            string qry = "delete from taxationmaster where TAXPARTYTYPE='QUOTATION' AND TAXPARTYID=" + ViewState["QUOTATIONID"].ToString();
+
+            Connection.Open();
+            SqlCommand com = new SqlCommand(qry, Connection);
+            com.ExecuteNonQuery();
+            Connection.Close();
+
             for (int t = 0; t < ((DataTable)Session["tax"]).Rows.Count; t++)
             {
                 string sqltax = "SELECT SRNO,TAXNAME,TAXUNIT,TAXVALUE FROM TAXMASTER TM WHERE TM.STATUS=0 AND TM.TAXNAME='" + ((DataTable)Session["tax"]).Rows[t]["TAXNAME"].ToString().Trim() + "' AND TM.TAXVALUE=" + ((DataTable)Session["tax"]).Rows[t]["TAXVALUE"].ToString().Trim();
@@ -371,7 +384,7 @@ public partial class quotationdetail : System.Web.UI.Page
                 taxationmaster objtax = new taxationmaster(HttpContext.Current.Server.MapPath("~/XML/database.xml"));
                 objtax.taxationmaster_SRNO = -1;
                 objtax.taxationmaster_TAXPARTYTYPE = "QUOTATION";
-                objtax.taxationmaster_TAXPARTYID = General.Parse<int>(dtmax.Rows[0][0].ToString());
+                objtax.taxationmaster_TAXPARTYID = General.Parse<int>(ViewState["QUOTATIONID"].ToString());
                 objtax.taxationmaster_TAXID = General.Parse<int>(dttax.Rows[0]["SRNO"].ToString());
                 objtax.taxationmaster_TAXNAME = dttax.Rows[0]["TAXNAME"].ToString().Trim();
                 objtax.taxationmaster_TAXVALUE = General.Parse<double>(dttax.Rows[0]["TAXVALUE"].ToString().Trim());
@@ -381,6 +394,13 @@ public partial class quotationdetail : System.Web.UI.Page
                 {
                 }
             }
+
+            string qry1 = "delete from termstable where partytype='QUOTATION' AND PARTYID=" + ViewState["QUOTATIONID"].ToString();
+
+            Connection.Open();
+            SqlCommand com1 = new SqlCommand(qry1, Connection);
+            com1.ExecuteNonQuery();
+            Connection.Close();
             foreach (ListItem aListItem in chktermslist.Items)
             {
                 if (aListItem.Selected)
@@ -389,7 +409,7 @@ public partial class quotationdetail : System.Web.UI.Page
                     objterms.termstable_SRNO = -1;
                     objterms.termstable_STATUS = 0;
                     objterms.termstable_PARTYTYPE = "QUOTATION";
-                    objterms.termstable_PARTYID = General.Parse<int>(dtmax.Rows[0][0].ToString());
+                    objterms.termstable_PARTYID = General.Parse<int>(ViewState["QUOTATIONID"].ToString());
                     objterms.termstable_TERMSID = General.Parse<int>(aListItem.Value.ToString().Trim());
                     objterms.termstable_TERMS = aListItem.Text.Trim().ToString();
                     objterms.termstable_TERMSVALUE = -1;
@@ -401,7 +421,7 @@ public partial class quotationdetail : System.Web.UI.Page
 
 
         }
-        Response.Redirect("Quotationlist.aspx?ID=1");
+        Response.Redirect("Quotationlist.aspx?ID=2");
     }
     public void MessageBox(string msg)
     {

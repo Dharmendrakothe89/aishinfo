@@ -21,6 +21,10 @@ public partial class Quotationlist : System.Web.UI.Page
                 {
                     MessageBox("Quotation Created Successfully");
                 }
+                else if (Request.QueryString["ID"].ToString() == "2")
+                {
+                    MessageBox("Quotation Updated Successfully");
+                }
             }
             DataTable dtcontract = FillContractList();
             ViewState["list"] = dtcontract;
