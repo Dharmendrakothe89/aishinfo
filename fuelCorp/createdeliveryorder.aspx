@@ -81,8 +81,8 @@
                                             <p>
                                                 <strong>DO Date</strong>
                                             </p>
-                                            <asp:TextBox ID="txtdodate" runat="server" type="date" CssClass="form-control validate[required,funcCall[DateFormat[]]"
-                                                onkeyup="DateFormatValidation(this.id,this.value);" onkeypress="return isNumberWthOutDot(event);"></asp:TextBox>&nbsp;
+                                            <asp:TextBox ID="txtdodate" runat="server"  CssClass="form-control validate[required,funcCall[DateFormat[]]"
+                                               onkeyup="DateFormatValidation(this.id,this.value);" MaxLength="10" onkeypress="return isNumberWthOutDot(event);"></asp:TextBox>&nbsp;
                                         </td>
                                     </tr>
                                     <tr id="trlinkedcustomer" runat="server" style="display: none;">
@@ -335,8 +335,7 @@
                                                                             <strong>Payment Date</strong>
                                                                         </p>
                                                                         <asp:TextBox ID="txtpmtdate" runat="server" type="date" Style="text-transform: lowercase;" Text='<%#Eval("PMTDATE") %>'
-                                                                            onkeyup="DateFormatValidation(this.id,this.value);" onkeypress="return isNumberWthOutDot(event);"
-                                                                            MaxLengt="10" CssClass="form-control validate[required,custom[email]]"></asp:TextBox>
+                                                                          onkeyup="DateFormatValidation(this.id,this.value);" MaxLength="10" onkeypress="return isNumberWthOutDot(event);" CssClass="form-control validate[required,custom[email]]"></asp:TextBox>
                                                                     </td>
                                                                     <td>
                                                                         <p>
