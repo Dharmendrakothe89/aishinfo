@@ -51,6 +51,9 @@ a:hover{
 	margin:10px -10px 20px -10px;
 	background-color:#ddd;
 }
+.overlay{  opacity: 0.9; background-color: #000000;position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 99; display:none;}
+.border{border: 1px solid #BCBCBC;}
+.close{float: right;color: #000000;font-size: 20px;font-weight: bold;line-height: 13.5px;text-shadow: 0 1px 0 #ffffff;opacity: 0.25;margin-top:-34px;}
 .breadcrumb{
 	background:none;
 }
@@ -380,21 +383,31 @@ section.navbar{
 }
 .feature_box h4{
 	margin:0 0 10px 0;
-	font-weight:normal;	
+	font-weight:normal;
+	text-align:left;
+	margin:0 0 15px 0;
+	padding:0 0 5px 0;
+	 border-bottom: 2px solid red;
+	
 }
+
 .feature_box img{	
 	margin-bottom:10px;
-	background-color:#eb4800;
+	
 	padding:25px;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;	
-	border-radius: 50%;
-}
+	}
 .feature_box .service{	
 	margin-top:3px;
 	padding:3px;	
-	text-align:center;
+	
 }
+.feature_box .bottombox
+{margin: 10px 10px 0px 0px;
+padding: 10px 10px 10px 10px;
+border: 2px solid #cee6c5;
+background-color: #f4fff0;
+float: left;
+    }
 .feature_box .service:hover{
 	background-color:#f4f4f4;
 }
@@ -406,6 +419,7 @@ section.navbar{
 }
 .feature_box .service div{	
 	padding:5px 5px 0 5px;
+	text-align:justify;
 }
 /* end feature box */
 
@@ -626,7 +640,7 @@ section.our_client .row{
 /* Block 
 ----------------------------------------------------------------------------- */
 .block {
-	text-align: center;
+	text-align: left;
 	padding: 7px;
 	border: 1px solid #ddd;
 	border-top: 3px solid #eb4800;
@@ -642,9 +656,12 @@ section.our_client .row{
 }
 .small-product li {
 	text-align: left;
-	border-bottom: 1px dotted #eee;
-	padding: 5px 0;
+	/*border-bottom: 1px dotted #eee;
+	padding: 5px 0;*/
+	display:inline-block;
 	font-size:11px;
+	margin-left: -6px;
+    margin-right: -35px;
 }
 .small-product li img {
 	width: 50px;

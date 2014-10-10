@@ -15,7 +15,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lnklogout.Visible = true;
             lblwelcome.Visible = true;
             lbluser.Visible = true;
-            lnkregister.Visible = false;
+            lnkregister.Visible = true;
+            lnkdownline.Visible = true;
             lnkdashboard.Visible = true;
             lnkupload.Visible = true;
             lnksearch.Visible = true;
@@ -28,8 +29,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lnklogin.Visible = true;
             lnklogout.Visible = false;
             lblwelcome.Visible = false;
-            lnkregister.Visible = true;
-
+            lnkregister.Visible = false;
+            lnkdownline.Visible = false;
             lnkdashboard.Visible = false;
             lnkupload.Visible = false;
             lnksearch.Visible = false;
@@ -61,6 +62,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             Response.Redirect("register.aspx");
         }
+        else if (lnk.CommandName == "DOWNLINE")
+        {
+            Response.Redirect("downline.aspx");
+        }
 
     }
     protected void lnklogout_Click(object sender, EventArgs e)
@@ -76,8 +81,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lnkdashboard.Visible = false;
             lnkupload.Visible = false;
             lnksearch.Visible = false;
+            lnkregister.Visible = false;
             lnkedit.Visible = false;
-            Response.Redirect("register.aspx");
+            Response.Redirect("login.aspx");
 
         }
         else if (lnk.CommandName == "LOGIN")
@@ -85,7 +91,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lnklogin.Visible = false;
             lnklogout.Visible = true;
 
-            Response.Redirect("register.aspx");
+            Response.Redirect("login.aspx");
         }
     }
 }

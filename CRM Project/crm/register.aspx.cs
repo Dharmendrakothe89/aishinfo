@@ -1,40 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
+using System.Text;
+using System.Web.Security;
 using System.Web.UI;
-using System.Data;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Data.Odbc;
+using System.IO;
+using System.Collections.Generic;
 
 public partial class register : System.Web.UI.Page
 {
+   
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            string id = Request.QueryString["login"];
-            if (id != null)
+            if(Session["downline"] == null)
             {
-                MessageBox("You have to Login To Access Functionality ");
+                string sql = "SELECT SRNO,NAME AS USERNAME,CONCAT(NAME,'-',SEMICODE) AS NAME FROM REGISTRATIONTABLE RT WHERE SRNO=" + Session["relationshipid"].ToString();
+                Handler hdn = new Handler();
+                DataTable dt = hdn.GetTable(sql);
+                
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string sql1 = "SELECT SRNO,NAME AS USERNAME,CONCAT(NAME,'-',SEMICODE) AS NAME FROM REGISTRATIONTABLE RT WHERE SPONSORID=" + dt.Rows[i]["SRNO"].ToString().Trim();
+                    Handler hdn1 = new Handler();
+                    DataTable dt1 = hdn1.GetTable(sql1);
+                    dt.Merge(dt1);
+                }
+                Session["downline"] = dt;
+              
             }
-        }
-    }
-
-    protected void btnsign_Click(object sender, EventArgs e)
-    {
-        Handler hd = new Handler();
-        string sql = "select SRNO,NAME ,ROLE from usertable where STATUS=0 and userid= '" + txtusername.Text.Trim().ToString() + "' and password= '" + txtpassword.Text.Trim().ToString() + "'";
-        DataTable dtlogin = hd.GetTable(sql);
-        if (dtlogin.Rows.Count > 0 && dtlogin.Rows[0]["SRNO"].ToString().Trim() != string.Empty)
-        {
-            Session["userid"] = dtlogin.Rows[0]["SRNO"].ToString();
-            Session["username"] = dtlogin.Rows[0]["NAME"].ToString();
-            Session["designation"] = dtlogin.Rows[0]["ROLE"].ToString();
-            Response.Redirect("userdashboard.aspx");
-        }
-        else
-        {
-            MessageBox("Invalid Login Details");
+            
         }
     }
 
@@ -44,7 +48,7 @@ public partial class register : System.Web.UI.Page
         Handler hdn = new Handler();
         DataTable dt = hdn.GetTable("SELECT SRNO,NAME FROM REGISTRATIONTABLE RT WHERE STATUS=0 AND SEMICODE='" + txtsponsorid.Text.Trim() + "'");
 
-        if (dt.Rows.Count > 0 && dt.Rows[0]["SRNO"].ToString() != string.Empty)
+        if (dt.Rows.Count == 1  && dt.Rows[0]["SRNO"].ToString() != string.Empty)
         {
             registrationtable obj = new registrationtable(HttpContext.Current.Server.MapPath("~/XML/database.xml"));
             obj.registrationtable_SRNO = -1;
@@ -52,8 +56,15 @@ public partial class register : System.Web.UI.Page
             obj.registrationtable_SEMICODE = txtsemid.Text.Trim();
             obj.registrationtable_PHONENO = txtmobileno.Text.Trim();
             obj.registrationtable_EMAILID = txtemail.Text.Trim();
-            obj.registrationtable_SPONSORID = General.Parse<int>(dt.Rows[0]["SRNO"].ToString());
-            obj.registrationtable_SPONSORNAME = dt.Rows[0]["NAME"].ToString();
+            if (dt.Rows.Count > 0 && dt.Rows[0]["SRNO"].ToString() != string.Empty)
+            {
+                obj.registrationtable_SPONSORID = General.Parse<int>(dt.Rows[0]["SRNO"].ToString());
+            }
+            else
+            {
+                obj.registrationtable_SPONSORID = -1;
+            }
+            obj.registrationtable_SPONSORNAME = txtsponsorname.Text.Trim();
             obj.registrationtable_SPONSORSEMICODE = txtsponsorid.Text.Trim();
             obj.registrationtable_STATUS = 1;
             if (obj.Insert(true, "registrationtable"))
@@ -74,59 +85,41 @@ public partial class register : System.Web.UI.Page
         }
         else
         {
-            MessageBox("Sponsor SAMI-ID not match please enter correct sponsor SAMI_ID");
+            MessageBox("Please Enter Proper SAMI Id");
+        }
+
+    }
+
+    protected void txtsponsorname_TextChanged(object sender, EventArgs e)
+    {
+        if (txtsponsorname.Text != string.Empty)
+        {
+            string rel = txtsponsorname.Text.Substring(txtsponsorname.Text.LastIndexOf(',') + 1);
+            txtsponsorid.Text = rel;
         }
     }
 
-    protected void btnforget_Click(object sender, EventArgs e)
+    [System.Web.Script.Services.ScriptMethod]
+    [System.Web.Services.WebMethod(EnableSession = true)]
+    public static ArrayList GetAutoCompleteData(string username)
     {
-        if (txtforgetuserid.Text.Trim() != string.Empty || txtforgetemailid.Text.Trim() != string.Empty)
+        ArrayList result = new ArrayList();
+        if (HttpContext.Current.Session["downline"] != null)
         {
-            string body = string.Empty;
-            string sql = "SELECT * FROM USERTABLE UT WHERE STATUS=0";
-            if (txtforgetuserid.Text.Trim() != string.Empty)
-            {
-                sql += " AND USERID='" + txtforgetuserid.Text.Trim() + "'";
-            }
-            else if (txtforgetemailid.Text.Trim() != string.Empty)
-            {
-                sql += " AND USERID='" + txtforgetemailid.Text.Trim() + "'";
-            }
-            Handler hdn = new Handler();
-            DataTable dt = hdn.GetTable(sql);
-            if (dt.Rows.Count > 0)
-            {
-                body = "<html xmlns='http://www.w3.org/1999/xhtml'> <head runat='server'> <title>Registration</title> </head> " +
-                " <body> <form id='form1' runat='server'> <div style='  border: 4px solid #537DA3; height:544px; width:600px; background-color:#fff; left:42%; top:0; margin-left:-200px; z-index:99999; border-radius:10px; position:fixed;'>" +
-                " <img src='Images/logo.png' alt='' style='margin-left:3%; padding-top:5px;'  /> <div style='font-size:18px; font-family:Arial Balck; font-weight:bold; margin-left:22px; color:#93c220;'>Welcome To Marketing Project</div><br />" +
-                " <p style='margin-left:24px; line-height:22px;'>Hi " + dt.Rows[0]["NAME"].ToString() + "   <br /> Welcome to<a href=''>Marketing Project</a><strong>Get Started!</strong> </p>" +
-                " <strong style='margin-left:24px;'>Your Login Details are :</strong> <p style='margin-left:24px;'><strong>UserName : </strong> &nbsp;&nbsp;" + dt.Rows[0]["USERID"].ToString() + "<br />" +
-                " <strong>Password :</strong>&nbsp;&nbsp;&nbsp;" + dt.Rows[0]["PASSWORD"].ToString() + " </p>" +
-                " </form></body> </html>";
+            DataTable dtSelect = new DataTable();
+            dtSelect = (DataTable) HttpContext.Current.Session["downline"];
+            List<string> list =  (from a in dtSelect.AsEnumerable().Where(a => a["NAME"].ToString().StartsWith(username)) select a.Field<string>("NAME")).ToList();
+            //List<string> list = (from row in dtSelect.AsEnumerable().Where(row=>row["NAME"].ToString().StartsWith(username))).ToList(); //select row.Field<string>("NAME")).ToList();
 
-                string x = HttpContext.Current.Request.Url.ToString();
-                string[] s = { "Default.aspx" };
-                string[] spath = x.Split(s, StringSplitOptions.None);
-                MessageBox("Check Your Mail For Account Details. Thank You");
-                try
+            foreach (DataRow dr in dtSelect.Rows)
+            {
+                if (dr["NAME"].ToString().ToLower().StartsWith(username))
                 {
-                    General.SendMail("", "sumitrk2002@gmail.com", "9850386144k", "smtp.gmail.com", 587, "Login Recovery", body, txtforgetemailid.Text, "", "");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox("Mail Not Send Try Again");
+                    result.Add(dr["NAME"]);
                 }
             }
-            else
-            {
-                MessageBox("Provide Proper Details");
-            }
-
         }
-        else
-        {
-            MessageBox("Please Provide User ID or Email ID");
-        }
+        return result;
     }
     public void MessageBox(string msg)
     {

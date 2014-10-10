@@ -32,7 +32,7 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="span7">
+            <%--<div class="span7">
                 <h4 class="title">
                     <span class="text"><strong>Enquiry </strong> Form</span></h4>
                 <div>
@@ -71,7 +71,7 @@
                         </div>
                     </fieldset>
                 </div>
-            </div>
+            </div>--%>
         </div>
     </div>
     

@@ -45,7 +45,24 @@ public partial class uploadexcel : System.Web.UI.Page
             //string FilePath = Server.MapPath(FolderPath + FileName);
             string FilePath = Server.MapPath(FolderPath + "reporting.xlsx");
             DataSet ds = ImportExcelXLS(FilePath, true);
-            ViewState["data"] = (DataTable)ds.Tables[0];
+            DataTable dt = ds.Tables[0];
+            if (dt.Columns.Count == 6 && dt.Columns[1].ColumnName.ToUpper() == "NAME OF PROSPECT" && dt.Columns[2].ColumnName.ToUpper() == "CONTACT NUMBER" && dt.Columns[3].ColumnName.ToUpper() == "ACTIVITY" && dt.Columns[4].ColumnName.ToUpper() == "RESULT" && dt.Columns[5].ColumnName.ToUpper() == "REMARKS")
+            {
+                dt.Columns[0].ColumnName = "SRNO";
+                dt.Columns[1].ColumnName = "NAME";
+                dt.Columns[2].ColumnName = "CONTACTNO";
+                dt.Columns[3].ColumnName = "ACTIVITY";
+                dt.Columns[4].ColumnName = "RESULT";
+                dt.Columns[5].ColumnName = "REMARK";
+                ViewState["data"] = (DataTable)ds.Tables[0];
+                
+            }
+            else
+            {
+                MessageBox("Please Select Proper File");
+                ViewState["data"] = null;
+               
+            }
             grvExcelData.DataSource = (DataTable)ViewState["data"];
             grvExcelData.DataBind();
         }
@@ -141,6 +158,37 @@ public partial class uploadexcel : System.Web.UI.Page
             MessageBox("Please Upload Record");
         }
         btnsubmit.Enabled = true;
+    }
+    protected void btnaddrecord_Click(object sender, EventArgs e)
+    {
+        DataTable dt1 = new DataTable();
+        if (ViewState["data"] == null)
+        {
+            dt1.Columns.Add("SRNO");
+            dt1.Columns.Add("NAME");
+            dt1.Columns.Add("CONTACTNO");
+            dt1.Columns.Add("ACTIVITY");
+            dt1.Columns.Add("RESULT");
+            dt1.Columns.Add("REMARK");
+          
+        }
+        else
+        {
+            dt1 = (DataTable)ViewState["data"];
+            ViewState["data"] = null;
+        }
+        int count = dt1.Rows.Count;
+        dt1.Rows.Add();
+        dt1.Rows[count]["SRNO"] = (count + 1).ToString();
+        dt1.Rows[count]["NAME"] = txtprospect.Text.Trim().ToString();
+        dt1.Rows[count]["CONTACTNO"] = txtcontactno.Text.Trim().ToString();
+        dt1.Rows[count]["ACTIVITY"] = txtactivity.Text.Trim().ToString();
+        dt1.Rows[count]["RESULT"] = txtresult.Text.Trim().ToString();
+        dt1.Rows[count]["REMARK"] = txtremark.Text.Trim().ToString();
+
+        ViewState["data"] = dt1;
+        grvExcelData.DataSource = (DataTable)ViewState["data"];
+        grvExcelData.DataBind();
     }
     public void MessageBox(string msg)
     {

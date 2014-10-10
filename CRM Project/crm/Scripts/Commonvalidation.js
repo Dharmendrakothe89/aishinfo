@@ -258,18 +258,22 @@ function validateEmail(elementValue, id) {
         }
     }
     return true;
-} 
+}
+/*************************************** SAMI ID VALIDATION ************************************************************************/
+
+
  /*************************************** MOBILE VALIDATION ************************************************************************/
 function validateMobileNo(evt, id) {
     var id = document.getElementById(id).value;
-     var charCode = (evt.which) ? evt.which : event.keyCode;
-     if (((charCode >= 48) && (charCode <= 57)) || (charCode == 44)) 
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    
+    if (((charCode >= 48) && (charCode <= 57)) || (charCode == 44) || (charCode == 107) || (charCode == 43)) 
       {
          return true;
       }
      else
       {
-          alert("Please Enter Atleast 10 Digit Contact Number");
+
          return false;
       }
  }

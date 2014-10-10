@@ -60,6 +60,11 @@
                                     onkeypress="return isNumberWthOutDot(event);" placeholder="dd/mm/yyyy"></asp:TextBox--%>
                                 <asp:TextBox ID="txtname" runat="server" Style="text-transform: capitalize;" CssClass="form-control validate[required]"
                                     placeholder="Name"></asp:TextBox>
+                                <asp:DropDownList ID="ddltype" runat="server" Width="150px">
+                                <asp:ListItem Text="Own" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Downline" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="All" Value="0"></asp:ListItem>
+                                </asp:DropDownList>
                                 <asp:Button ID="btnsearch" runat="server" Text="Search" OnClick="btnsearch_Click"
                                     CssClass="btn btn-inverse large" />
                             </div>
