@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<db_photostudio>
+  <table name="partymaster" text="partymaster" object="partymaster" pk="partymaster.SRNO">
+    <column name="partymaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="partymaster.PARTYNAME" text="PARTYNAME" datatype="System.String" isnull="False"/>
+    <column name="partymaster.PARTYCODE" text="PARTYCODE" datatype="System.String" isnull="false"/>
+    <column name="partymaster.PARTYTYPE" text="PARTYTYPE" datatype="System.String" isnull="false"/>
+    <column name="partymaster.PARTYTYPECODE" text="PARTYTYPECODE" datatype="System.Int32" isnull="false"/>
+    <column name="partymaster.PARTYADDON" text="PARTYADDON" datatype="System.Int32" isnull="false"/>
+    <column name="partymaster.WEBSITE" text="WEBSITE" datatype="System.String" isnull="True"/>
+    <column name="partymaster.PANNO" text="PANNO" datatype="System.String" isnull="false"/>
+    <column name="partymaster.PHONENO" text="PHONENO" datatype="System.String" isnull="True"/>
+    <column name="partymaster.EMAIL" text="EMAIL" datatype="System.String" isnull="True"/>
+    <column name="partymaster.FAX" text="FAX" datatype="System.String" isnull="True"/>
+    <column name="partymaster.CSTNO" text="CSTNO" datatype="System.String" isnull="True"/>
+    <column name="partymaster.VATNO" text="VATNO" datatype="System.String" isnull="True"/>
+    <column name="partymaster.SERVICETAXNO" text="SERVICETAXNO" datatype="System.String" isnull="True"/>
+    <column name="partymaster.EXCISENO" text="EXCISENO" datatype="System.String" isnull="True"/>
+    <column name="partymaster.EXCISERANGE" text="EXCISERANGE" datatype="System.String" isnull="True"/>
+    <column name="partymaster.EXCISEDIVISION" text="EXCISEDIVISION" datatype="System.String" isnull="True"/>
+    <column name="partymaster.EXCISECOLLECTRATE" text="EXCISECOLLECTRATE" datatype="System.String" isnull="True"/>
+
+  </table>
+  <table name="personalmaster" text="personalmaster" object="personalmaster" pk="personalmaster.SRNO">
+    <column name="personalmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="personalmaster.PERSONNAME" text="PERSONNAME" datatype="System.String" isnull="False"/>
+    <column name="personalmaster.DESIGNATION" text="DESIGNATION" datatype="System.String" isnull="True"/>
+    <column name="personalmaster.DEPARTMENT" text="DEPARTMENT" datatype="System.String" isnull="True"/>
+    <column name="personalmaster.PHONENO" text="PHONENO" datatype="System.String" isnull="True"/>
+    <column name="personalmaster.MOBILE" text="MOBILE" datatype="System.String" isnull="false"/>
+    <column name="personalmaster.FAX" text="FAX" datatype="System.String" isnull="True"/>
+    <column name="personalmaster.EMAILID" text="EMAILID" datatype="System.String" isnull="True"/>
+    <column name="personalmaster.PERSONRELATIONID" text="PERSONRELATIONID" datatype="System.Int32" isnull="false"/>
+    <column name="personalmaster.PERSONTYPE" text="PERSONTYPE" datatype="System.String" isnull="false"/>
+  </table>
+  <table name="partyaddressmaster" text="partyaddressmaster" object="partyaddressmaster" pk="partyaddressmaster.SRNO">
+    <column name="partyaddressmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="partyaddressmaster.PARTYID" text="PARTYID" datatype="System.Int32" isnull="False"/>
+    <column name="partyaddressmaster.ADDRESSTYPE" text="ADDRESSTYPE" datatype="System.Int32" isnull="False"/>
+    <column name="partyaddressmaster.STATENAME" text="STATENAME" datatype="System.String" isnull="False"/>
+    <column name="partyaddressmaster.STATEID" text="STATEID" datatype="System.Int32" isnull="False"/>
+    <column name="partyaddressmaster.CITYNAME" text="CITYNAME" datatype="System.String" isnull="false"/>
+    <column name="partyaddressmaster.CITYID" text="CITYID" datatype="System.Int32" isnull="False"/>
+    <column name="partyaddressmaster.PINCODE" text="PINCODE" datatype="System.String" isnull="false"/>
+    <column name="partyaddressmaster.ADDRESS" text="ADDRESS" datatype="System.String" isnull="false"/>
+    <column name="partyaddressmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+
+  <table name="partytaxmaster" text="partytaxmaster" object="partytaxmaster" pk="partytaxmaster.SRNO">
+    <column name="partytaxmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="partytaxmaster.PARTYID" text="PARTYID" datatype="System.Int32" isnull="False"/>
+    <column name="partytaxmaster.TAXID" text="TAXID" datatype="System.Int32" isnull="False"/>
+    <column name="partytaxmaster.TAXNAME" text="TAXNAME" datatype="System.String" isnull="False"/>
+    <column name="partytaxmaster.TAXVALUE" text="TAXVALUE" datatype="System.Double" isnull="False"/>
+    <column name="partytaxmaster.TAXUNIT" text="TAXUNIT" datatype="System.String" isnull="False"/>
+    <column name="partytaxmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+
+  <table name="godownmaster" text="godownmaster" object="godownmaster" pk="godownmaster.SRNO">
+    <column name="godownmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="godownmaster.GODOWNNAME" text="GODOWNNAME" datatype="System.String" isnull="False"/>
+    <column name="godownmaster.STATEID" text="STATEID" datatype="System.Int32" isnull="False"/>
+    <column name="godownmaster.STATENAME" text="STATENAME" datatype="System.String" isnull="False"/>
+    <column name="godownmaster.CITYID" text="CITYID" datatype="System.Int32" isnull="False"/>
+    <column name="godownmaster.CITYNAME" text="CITYNAME" datatype="System.String" isnull="false"/>
+    <column name="godownmaster.PHONE" text="PHONE" datatype="System.String" isnull="false"/>
+    <column name="godownmaster.FAX" text="FAX" datatype="System.String" isnull="True"/>
+    <column name="godownmaster.EMAIL" text="EMAIL" datatype="System.String" isnull="false"/>
+    <column name="godownmaster.ADDRESS" text="ADDRESS" datatype="System.String" isnull="false"/>
+    <column name="godownmaster.PIN" text="PIN" datatype="System.String" isnull="false"/>
+    <column name="godownmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+
+  <table name="transportermaster" text="transportermaster" object="transportermaster" pk="transportermaster.SRNO">
+    <column name="transportermaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="transportermaster.TRANSPORTERNAME" text="TRANSPORTERNAME" datatype="System.String" isnull="False"/>
+    <column name="transportermaster.TRANSPORTERCODE" text="TRANSPORTERCODE" datatype="System.String" isnull="False"/>
+    <column name="transportermaster.TRANTYPE" text="TRANTYPE" datatype="System.String" isnull="False"/>
+    <column name="transportermaster.TRANTYPECODE" text="TRANTYPECODE" datatype="System.Int32" isnull="False"/>
+    <column name="transportermaster.ADDRESS" text="ADDRESS" datatype="System.String" isnull="false"/>
+    <column name="transportermaster.MOBILENO" text="MOBILENO" datatype="System.String" isnull="false"/>
+    <column name="transportermaster.FAX" text="FAX" datatype="System.String" isnull="True"/>
+    <column name="transportermaster.EMAILID" text="EMAILID" datatype="System.String" isnull="True"/>
+    <column name="transportermaster.PANNO" text="PANNO" datatype="System.String" isnull="False"/>
+    <column name="transportermaster.SERVICETAXNO" text="SERVICETAXNO" datatype="System.String" isnull="False"/>
+    <column name="transportermaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+  <table name="collierymaster" text="collierymaster" object="collierymaster" pk="collierymaster.SRNO">
+    <column name="collierymaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="collierymaster.COLLIERYNAME" text="COLLIERYNAME" datatype="System.String" isnull="False"/>
+    <column name="collierymaster.COLLIERYCODE" text="COLLIERYCODE" datatype="System.String" isnull="False"/>
+    <column name="collierymaster.COLLIERYREGION" text="COLLIERYREGION" datatype="System.String" isnull="False"/>
+    <column name="collierymaster.CMPID" text="CMPID" datatype="System.Int32" isnull="False"/>
+    <column name="collierymaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="collierydetailmaster" text="collierydetailmaster" object="collierydetailmaster" pk="collierydetailmaster.SRNO">
+    <column name="collierydetailmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="collierydetailmaster.COALID" text="COALID" datatype="System.Int32" isnull="False"/>
+    <column name="collierydetailmaster.COLLIERYID" text="COLLIERYID" datatype="System.Int32" isnull="False"/>
+    <column name="collierydetailmaster.GRADE" text="GRADE" datatype="System.String" isnull="False"/>
+    <column name="collierydetailmaster.NOTIFIEDPRICE" text="NOTIFIEDPRICE" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.COMMBENIFITCHARGES" text="COMMBENIFITCHARGES" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.CRUSHINGCHARGES" text="CRUSHINGCHARGES" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.STC" text="STC" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.SED" text="SED" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.CEC" text="CEC" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.ROYALTY" text="ROYALTY" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.MPRDTAX" text="MPRDTAX" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.TRANSITTAX" text="TRANSITTAX" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.ENTRYFEE" text="ENTRYFEE" datatype="System.Double" isnull="False"/>
+    <column name="collierydetailmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="branchmaster" text="branchmaster" object="branchmaster" pk="branchmaster.BRANCHID">
+    <column name="branchmaster.BRANCHID" text="BRANCHID" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="branchmaster.BRANCHNAME" text="BRANCHNAME" datatype="System.String" isnull="False"/>
+    <column name="branchmaster.CMPID" text="CMPID" datatype="System.Int32" isnull="False"/>
+    <column name="branchmaster.ADDRESS" text="ADDRESS" datatype="System.String" isnull="False"/>
+    <column name="branchmaster.STATEID" text="STATEID" datatype="System.Int32" isnull="False"/>
+    <column name="branchmaster.STATENAME" text="STATENAME" datatype="System.String" isnull="False"/>
+    <column name="branchmaster.CITYID" text="CITYID" datatype="System.Int32" isnull="False"/>
+    <column name="branchmaster.CITYNAME" text="CITYNAME" datatype="System.String" isnull="False"/>
+    <column name="branchmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+
+  <table name="bankmaster" text="bankmaster" object="bankmaster" pk="bankmaster.SRNO">
+    <column name="bankmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="bankmaster.RELATIONSHIPID" text="RELATIONSHIPID" datatype="System.Int32" isnull="True"/>
+    <column name="bankmaster.ACCOUNTNAME" text="ACCOUNTNAME" datatype="System.String" isnull="False"/>
+    <column name="bankmaster.ACCOUNTNO" text="ACCOUNTNO" datatype="System.String" isnull="False"/>
+    <column name="bankmaster.BANKNAME" text="BANKNAME" datatype="System.String" isnull="False"/>
+    <column name="bankmaster.BANKBRANCHNAME" text="BANKBRANCHNAME" datatype="System.String" isnull="False"/>
+    <column name="bankmaster.MICRCODE" text="MICRCODE" datatype="System.String" isnull="False"/>
+    <column name="bankmaster.IFSCCODE" text="IFSCCODE" datatype="System.String" isnull="False"/>
+    <column name="bankmaster.CITYNAME" text="CITYNAME" datatype="System.String" isnull="False"/>
+    <column name="bankmaster.STATENAME" text="STATENAME" datatype="System.String" isnull="False"/>
+    <column name="bankmaster.ADDRESS" text="ADDRESS" datatype="System.String" isnull="False"/>
+    <column name="bankmaster.BRANCHID" text="BRANCHID" datatype="System.Int32" isnull="False"/>
+    <column name="bankmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="personaltable" text="personaltable" object="personaltable" pk="personaltable.RELATIONSHIPID">
+    <column name="personaltable.RELATIONSHIPID" text="RELATIONSHIPID" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="personaltable.INITIAL" text="INITIAL" datatype="System.String" isnull="True" display="No"/>
+    <column name="personaltable.FIRSTNAME" text="FIRSTNAME" datatype="System.String" isnull="False"/>
+    <column name="personaltable.MIDDLENAME" text="MIDDLE NAME" datatype="System.String" isnull="True"/>
+    <column name="personaltable.LASTNAME" text="LAST NAME" datatype="System.String"   isnull="True"/>
+    <column name="personaltable.MINITIAL" text="MINITIAL" datatype="System.String"   isnull="True"/>
+    <column name="personaltable.MFIRSTNAME" text="MFIRSTNAME" datatype="System.String" isnull="True"/>
+    <column name="personaltable.MMIDDLENAME" text="MMIDDLENAME" datatype="System.String"   isnull="True"/>
+    <column name="personaltable.MLASTNAME" text="MLASTNAME" datatype="System.String"   isnull="True"/>
+    <column name="personaltable.BRANCHNAME" text="BRANCHNAME" datatype="System.String" isnull="False"/>
+    <column name="personaltable.BRANCHID" text="BRANCHID" datatype="System.Int32" isnull="False"/>
+    <column name="personaltable.GENDER" text="GENDER" datatype="System.String" isnull="True"/>
+    <column name="personaltable.MARITALSTATUS" text="MARITALSTATUS" datatype="System.String" isnull="True"/>
+    <column name="personaltable.PAN" text="PAN" datatype="System.String" isnull="True"/>
+    <column name="personaltable.DOB" text="DOB" datatype="System.String"   isnull="True"/>
+  </table>
+
+  <table name="personalrelation" text="personalrelation" object="personalrelation" pk="personalrelation.SRNO">
+    <column name="personalrelation.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="personalrelation.RELATIONSHIPID" text="RELATIONSHIPID" datatype="System.Int32" isnull="False"/>
+    <column name="personalrelation.ASSOSIATEDFEILD" text="ASSOSIATEDFEILD" datatype="System.String" isnull="False"/>
+    <column name="personalrelation.GROUPID" text="GROUPID" datatype="System.Int32" isnull="False"/>
+    <column name="personalrelation.ASSOSIATEDBRANCH" text="ASSOSIATEDBRANCH" datatype="System.Int32" isnull="False"/>
+    <column name="personalrelation.STATUS" text="STATUS" datatype="System.Int32" isnull="True"/>
+  </table>
+  <table name="transactiontable" text="transactiontable" object="transactiontable" pk="transactiontable.SRNO">
+    <column name="transactiontable.SRNO" text="SRNO" datatype="System.Int32" isnull="true" />
+    <column name="transactiontable.LEDGER1" text="LEDGER1" datatype="System.Int32" isnull="False"/>
+    <column name="transactiontable.RELATIONID1" text="RELATIONID1" datatype="System.Int32" isnull="False"/>
+    <column name="transactiontable.LTRNTYPE1" text="LTRNTYPE1" datatype="System.String" isnull="False"/>
+    <column name="transactiontable.AMOUNT" text="AMOUNT" datatype="System.Double" isnull="False"/>
+    <column name="transactiontable.LEDGER2" text="LEDGER2" datatype="System.Int32" isnull="False"/>
+    <column name="transactiontable.RELATIONID2" text="RELATIONID2" datatype="System.Int32" isnull="False"/>
+    <column name="transactiontable.LTRNTYPE2" text="LTRNTYPE2" datatype="System.String" isnull="False"/>
+    <column name="transactiontable.NARRATION" text="NARRATION" datatype="System.String" isnull="False"/>
+    <column name="transactiontable.TRANSDATE" text="TRANSDATE" datatype="System.String" isnull="False"/>
+    <column name="transactiontable.TRANSACTIONTYPE" text="TRANSACTIONTYPE" datatype="System.Int32" isnull="False"/>
+    <column name="transactiontable.VOUCHERTYPE" text="VOUCHERTYPE" datatype="System.String" isnull="True"/>
+    <column name="transactiontable.VOUCHERNO" text="VOUCHERNO" datatype="System.String" isnull="True"/>
+    <column name="transactiontable.BRANCHID" text="BRANCHID" datatype="System.Int32" isnull="False"/>
+    <column name="transactiontable.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="transactiondetails" text="transactiondetails" object="transactiondetails" pk="transactiondetails.SRNO">
+    <column name="transactiondetails.SRNO" text="SRNO" datatype="System.Int32" isnull="true" pk="true"/>
+    <column name="transactiondetails.LEDGERID" text="LEDGERID" datatype="System.Int32" isnull="False"/>
+    <column name="transactiondetails.RELATIONID" text="RELATIONID" datatype="System.Int32" isnull="False"/>
+    <column name="transactiondetails.LTRNTYPE" text="LTRNTYPE" datatype="System.String" isnull="False"/>
+    <column name="transactiondetails.AMOUNT" text="AMOUNT" datatype="System.Double" isnull="False"/>
+    <column name="transactiondetails.NARRATION" text="NARRATION" datatype="System.String" isnull="False"/>
+    <column name="transactiondetails.TRANSDATE" text="TRANSDATE" datatype="System.String" isnull="False"/>
+    <column name="transactiondetails.VOUCHERTYPE" text="VOUCHERTYPE" datatype="System.String" isnull="False"/>
+    <column name="transactiondetails.BRANCHID" text="BRANCHID" datatype="System.Int32" isnull="False"/>
+    <column name="transactiondetails.ASSOCIATELEDGER" text="ASSOCIATELEDGER" datatype="System.Int32" isnull="False"/>
+    <column name="transactiondetails.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+  <table name="termscondition" text="termscondition" object="termscondition" pk="termscondition.SRNO">
+    <column name="termscondition.SRNO" text="SRNO" datatype="System.Int32" isnull="true"  display="No" pk="true"/>
+    <column name="termscondition.CATEGORY" text="CATEGORY" datatype="System.String" isnull="true"/>
+    <column name="termscondition.SUBCATEGORY" text="SUBCATEGORY" datatype="System.String" isnull="true"/>
+    <column name="termscondition.TERMS" text="TERMS" datatype="System.String" isnull="False"/>
+    <column name="termscondition.TERMSVALUE" text="TERMSVALUE" datatype="System.Int32" isnull="True"/>
+    <column name="termscondition.DESCRIPTION" text="DESCRIPTION" datatype="System.String" isnull="True"/>
+    <column name="termscondition.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+  <table name="lookupmaster" text="lookupmaster" object="lookupmaster" pk="lookupmaster.SRNO">
+    <column name="lookupmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="lookupmaster.NAME" text="NAME" datatype="System.String" isnull="true"/>
+    <column name="lookupmaster.VALUE" text="VALUE" datatype="System.Double" isnull="False"/>
+    <column name="lookupmaster.HEADID" text="HEADID" datatype="System.Int32" isnull="true"/>
+    <column name="lookupmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+
+
+  <table name="usertable" text="usertable" object="usertable" pk="usertable.SRNO">
+    <column name="usertable.SRNO" text="SRNO" datatype="System.Int32" isnull="true" pk="true"/>
+    <column name="usertable.NAME" text="NAME" datatype="System.String" isnull="False"/>
+    <column name="usertable.DESIGNATION" text="DESIGNATION" datatype="System.String" isnull="False"/>
+    <column name="usertable.DEPARTMENT" text="DEPARTMENT" datatype="System.String" isnull="False"/>
+    <column name="usertable.GENDER" text="GENDER" datatype="System.String" isnull="False"/>
+    <column name="usertable.PHONE" text="PHONE" datatype="System.String" isnull="False"/>
+    <column name="usertable.EMAIL" text="EMAIL" datatype="System.String" isnull="False"/>
+    <column name="usertable.USERID" text="USERID" datatype="System.String" isnull="False"/>
+    <column name="usertable.PASSWORD" text="PASSWORD" datatype="System.String" isnull="False"/>
+    <column name="usertable.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="permissionmaster" text="permissionmaster" object="permissionmaster" pk="permissionmaster.SRNO">
+    <column name="permissionmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="permissionmaster.USERID" text="USERID" datatype="System.Int32" isnull="false"/>
+    <column name="permissionmaster.CMPID" text="CMPID" datatype="System.Int32" isnull="true"/>
+    <column name="permissionmaster.BRANCHID" text="BRANCHID" datatype="System.Int32" isnull="true"/>
+    <column name="permissionmaster.PREFFERED" text="PREFFERED" datatype="System.Int32" isnull="false"/>
+    <column name="permissionmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+
+  <table name="taxmaster" text="taxmaster" object="taxmaster" pk="taxmaster.SRNO">
+    <column name="taxmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="taxmaster.TAXNAME" text="TAXNAME" datatype="System.String" isnull="false"/>
+    <column name="taxmaster.TAXVALUE" text="TAXVALUE" datatype="System.Double" isnull="False"/>
+    <column name="taxmaster.TAXUNIT" text="TAXUNIT" datatype="System.String" isnull="false"/>
+    <column name="taxmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+
+
+
+  <table name="termstable" text="termstable" object="termstable" pk="termstable.SRNO">
+    <column name="termstable.SRNO" text="SRNO" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="termstable.PARTYTYPE" text="PARTYTYPE" datatype="System.String" isnull="false"/>
+    <column name="termstable.PARTYID" text="PARTYID" datatype="System.Int32" isnull="False"/>
+    <column name="termstable.TERMSID" text="TERMSID" datatype="System.Int32" isnull="false"/>
+    <column name="termstable.TERMS" text="TERMS" datatype="System.String" isnull="false"/>
+    <column name="termstable.TERMSVALUE" text="TERMSVALUE" datatype="System.Double" isnull="true"/>
+    <column name="termstable.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+
+  <table name="taxationmaster" text="taxationmaster" object="taxationmaster" pk="taxationmaster.SRNO">
+    <column name="taxationmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="taxationmaster.TAXPARTYTYPE" text="TAXPARTYTYPE" datatype="System.String" isnull="false"/>
+    <column name="taxationmaster.TAXPARTYID" text="TAXPARTYID" datatype="System.Int32" isnull="False"/>
+    <column name="taxationmaster.TAXID" text="TAXID" datatype="System.Int32" isnull="false"/>
+    <column name="taxationmaster.TAXNAME" text="TAXNAME" datatype="System.String" isnull="false"/>
+    <column name="taxationmaster.TAXVALUE" text="TAXVALUE" datatype="System.Double" isnull="false"/>
+    <column name="taxationmaster.TAXUNIT" text="TAXUNIT" datatype="System.String" isnull="false"/>
+    <column name="taxationmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+
+  <table name="quotationspecification" text="quotationspecification" object="quotationspecification" pk="quotationspecification.SRNO">
+    <column name="quotationspecification.SRNO" text="SRNO" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="quotationspecification.QUOTATIONID" text="QUOTATIONID" datatype="System.Int32" isnull="false"/>
+    <column name="quotationspecification.COALTYPE" text="COALTYPE" datatype="System.String" isnull="False"/>
+    <column name="quotationspecification.COALTYPEID" text="COALTYPEID" datatype="System.Int32" isnull="false"/>
+    <column name="quotationspecification.COALSOURCE" text="COALSOURCE" datatype="System.String" isnull="false"/>
+    <column name="quotationspecification.COALSOURCEID" text="COALSOURCEID" datatype="System.Int32" isnull="false"/>
+    <column name="quotationspecification.COALQUANTITY" text="COALQUANTITY" datatype="System.Double" isnull="false"/>
+    <column name="quotationspecification.COALRATE" text="COALRATE" datatype="System.Double" isnull="false"/>
+    <column name="quotationspecification.COALSIZEMIN" text="COALSIZEMIN" datatype="System.Double" isnull="false"/>
+    <column name="quotationspecification.COALSIZEMAX" text="COALSIZEMAX" datatype="System.Double" isnull="false"/>
+    <column name="quotationspecification.GCV" text="GCV" datatype="System.Double" isnull="false"/>
+    <column name="quotationspecification.GCVERROR" text="GCVERROR" datatype="System.Double" isnull="false"/>
+    <column name="quotationspecification.MOISTURE" text="MOISTURE" datatype="System.Double" isnull="false"/>
+    <column name="quotationspecification.MOISTUREERROR" text="MOISTUREERROR" datatype="System.Double" isnull="false"/>
+  </table>
+
+  <table name="quotationmaster" text="quotationmaster" object="quotationmaster" pk="quotationmaster.QUOTATIONID">
+    <column name="quotationmaster.QUOTATIONID" text="QUOTATIONID" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="quotationmaster.PARTYTYPE" text="PARTYTYPE" datatype="System.Int32" isnull="false"/>
+    <column name="quotationmaster.PARTYID" text="PARTYID" datatype="System.Int32" isnull="False"/>
+    <column name="quotationmaster.DATE" text="DATE" datatype="System.String" isnull="false"/>
+    <column name="quotationmaster.REFNO" text="REFNO" datatype="System.String" isnull="false"/>
+    <column name="quotationmaster.COALCOST" text="COALCOST" datatype="System.Double" isnull="false"/>
+    <column name="quotationmaster.TAXCOST" text="TAXCOST" datatype="System.Double" isnull="false"/>
+    <column name="quotationmaster.TRANSPORTATIONCOST" text="TRANSPORTATIONCOST" datatype="System.Double" isnull="false"/>
+    <column name="quotationmaster.TOTALCOST" text="TOTALCOST" datatype="System.Double" isnull="false"/>
+    <column name="quotationmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+    <column name="quotationmaster.EXPIRYDATE" text="EXPIRYDATE" datatype="System.String" isnull="false"/>
+    <column name="quotationmaster.CONTACTPERSON" text="CONTACTPERSON" datatype="System.Int32" isnull="false"/>
+  </table>
+
+  <table name="quotationpartymaster" text="quotationpartymaster" object="quotationpartymaster" pk="quotationpartymaster.SRNO">
+    <column name="quotationpartymaster.SRNO" text="SRNO" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="quotationpartymaster.PARTYNAME" text="PARTYNAME" datatype="System.String" isnull="false"/>
+    <column name="quotationpartymaster.PARTYCODE" text="PARTYCODE" datatype="System.String" isnull="False"/>
+    <column name="quotationpartymaster.ADDRESS" text="ADDRESS" datatype="System.String" isnull="false"/>
+    <column name="quotationpartymaster.CONTACTNO" text="CONTACTNO" datatype="System.String" isnull="false"/>
+
+  </table>
+
+  <table name="vehiclemaster" text="vehiclemaster" object="vehiclemaster" pk="vehiclemaster.VEHICLEID">
+    <column name="vehiclemaster.VEHICLEID" text="VEHICLEID" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="vehiclemaster.TRANSPORTERID" text="TRANSPORTERID" datatype="System.Int32" isnull="False"/>
+    <column name="vehiclemaster.VEHICLENAME" text="VEHICLENAME" datatype="System.String" isnull="False"/>
+    <column name="vehiclemaster.VEHICLENO" text="VEHICLENO" datatype="System.String" isnull="False"/>
+    <column name="vehiclemaster.CAPACITY" text="CAPACITY" datatype="System.String" isnull="False"/>
+    <column name="vehiclemaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="statemaster" text="statemaster" object="statemaster" pk="statemaster.STATEID">
+    <column name="statemaster.STATEID" text="STATEID" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="statemaster.STATENAME" text="STATENAME" datatype="System.String" isnull="False"/>
+    <column name="statemaster.UNIONTERITARY" text="UNIONTERITARY" datatype="System.Int32" isnull="False"/>
+    <column name="statemaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="citymaster" text="citymaster" object="citymaster" pk="citymaster.CITYID">
+    <column name="citymaster.CITYID" text="CITYID" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="citymaster.CITYNAME" text="CITYNAME" datatype="System.String" isnull="False"/>
+    <column name="citymaster.STATEID" text="STATEID" datatype="System.Int32" isnull="False"/>
+    <column name="citymaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="contractmaster" text="contractmaster" object="contractmaster" pk="contractmaster.CONTRACTID">
+    <column name="contractmaster.CONTRACTID" text="CONTRACTID" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="contractmaster.CONTRACTWITH" text="CONTRACTWITH" datatype="System.String" isnull="false"/>
+    <column name="contractmaster.CONTRACTTYPEID" text="CONTRACTTYPEID" datatype="System.Int32" isnull="False"/>
+    <column name="contractmaster.CONTRACTTYPE" text="CONTRACTTYPE" datatype="System.String" isnull="false"/>
+    <column name="contractmaster.CONTRACTDATE" text="CONTRACTDATE" datatype="System.String" isnull="false"/>
+    <column name="contractmaster.REFNO" text="REFNO" datatype="System.String" isnull="true"/>
+    <column name="contractmaster.REFDATE" text="REFDATE" datatype="System.String" isnull="true"/>
+    <column name="contractmaster.STARTDATE" text="STARTDATE" datatype="System.String" isnull="false"/>
+    <column name="contractmaster.ENDDATE" text="ENDDATE" datatype="System.String" isnull="false"/>
+    <column name="contractmaster.PARTYID" text="PARTYID" datatype="System.Int32" isnull="false"/>
+    <column name="contractmaster.PARTYCONTACTPERSONID" text="PARTYCONTACTPERSONID" datatype="System.Int32" isnull="false"/>
+    <column name="contractmaster.QUANTITY" text="QUANTITY" datatype="System.Double" isnull="false"/>
+    <column name="contractmaster.QUANTITYPER" text="QUANTITYPER" datatype="System.String" isnull="false"/>
+    <column name="contractmaster.RATE" text="RATE" datatype="System.Double" isnull="true"/>
+    <column name="contractmaster.SERVICECHARGE" text="SERVICECHARGE" datatype="System.Double" isnull="true"/>
+    <column name="contractmaster.CMPID" text="CMPID" datatype="System.Int32" isnull="false"/>
+    <column name="contractmaster.BRANCHID" text="BRANCHID" datatype="System.Int32" isnull="false"/>
+    <column name="contractmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+
+  <table name="contractdetailmaster" text="contractdetailmaster" object="contractdetailmaster" pk="contractdetailmaster.SRNO">
+    <column name="contractdetailmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="true"   pk="true"/>
+    <column name="contractdetailmaster.CONTRACTID" text="CONTRACTID" datatype="System.Int32" isnull="false"/>
+    <column name="contractdetailmaster.WORKDETAILS" text="WORKDETAILS" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.DELIVERYDETAILS" text="DELIVERYDETAILS" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.SUPPLYDELEYDETAILS" text="SUPPLYDELEYDETAILS" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.EXCESSSUPPLY" text="EXCESSSUPPLY" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.WEIGHTMENT" text="WEIGHTMENT" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.SECURITYDEPOSIT" text="SECURITYDEPOSIT" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.JURISDICTION" text="JURISDICTION" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.COMPLIANCELAW" text="COMPLIANCELAW" datatype="System.String" isnull="false"/>
+    <column name="contractdetailmaster.CONFIDENTIALITY" text="CONFIDENTIALITY" datatype="System.String" isnull="false"/>
+    <column name="contractdetailmaster.INDEMNITY" text="INDEMNITY" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.ARBITRATION" text="ARBITRATION" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.TERMINATION" text="TERMINATION" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.FORCEMAJEURE" text="FORCEMAJEURE" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.RETENTIONMONEY" text="RETENTIONMONEY" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.PARTYVALUE" text="PARTYVALUE" datatype="System.String" isnull="true"/>
+    <column name="contractdetailmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="false"/>
+  </table>
+  <table name="auctionmaster" text="auctionmaster" object="auctionmaster" pk="auctionmaster.AUCTIONID">
+    <column name="auctionmaster.AUCTIONID" text="AUCTIONID" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="auctionmaster.CMPID" text="CMPID" datatype="System.Int32" isnull="False"/>
+    <column name="auctionmaster.AUCTIONNAME" text="AUCTIONNAME" datatype="System.String" isnull="False"/>
+    <column name="auctionmaster.DESCRIPTION" text="DESCRIPTION" datatype="System.String" isnull="True"/>
+    <column name="auctionmaster.AUCTIONDATE" text="AUCTIONDATE" datatype="System.String" isnull="False"/>
+    <column name="auctionmaster.STARTDATE" text="STARTDATE" datatype="System.String" isnull="False"/>
+    <column name="auctionmaster.ENDDATE" text="ENDDATE" datatype="System.String" isnull="False"/>
+    <column name="auctionmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="auctionspecification" text="auctionspecification" object="auctionspecification" pk="auctionspecification.SRNO">
+    <column name="auctionspecification.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="auctionspecification.CONTRACTTYPE" text="CONTRACTTYPE" datatype="System.String" isnull="False"/>
+    <column name="auctionspecification.CONTRACTID" text="CONTRACTID" datatype="System.Int32" isnull="False"/>
+    <column name="auctionspecification.COALTYPE" text="COALTYPE" datatype="System.String" isnull="False"/>
+    <column name="auctionspecification.GRADE" text="GRADE" datatype="System.String" isnull="False"/>
+    <column name="auctionspecification.RATE" text="STARTDATE" datatype="System.Double" isnull="False"/>
+    <column name="auctionspecification.QUANTITY" text="ENDDATE" datatype="System.Double" isnull="False"/>
+    <column name="auctionspecification.QUANTITYUNIT" text="QUANTITYUNIT" datatype="System.String" isnull="False"/>
+    <column name="auctionspecification.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="domaster" text="domaster" object="domaster" pk="domaster.DOID">
+    <column name="domaster.DOID" text="DOID" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="domaster.DOFOR" text="DOFOR" datatype="System.String" isnull="False"/>
+    <column name="domaster.PARTYID" text="PARTYID" datatype="System.Int32" isnull="False"/>
+    <column name="domaster.DONO" text="DONO" datatype="System.String" isnull="False"/>
+    <column name="domaster.DODATE" text="DODATE" datatype="System.String" isnull="False"/>
+    <column name="domaster.COLLIERYID" text="COLLIERYID" datatype="System.Int32" isnull="False"/>
+    <column name="domaster.MONTHID" text="MONTHID" datatype="System.Int32" isnull="False"/>
+    <column name="domaster.MONTH" text="MONTH" datatype="System.String" isnull="False"/>
+    <column name="domaster.DESTINATION" text="DESTINATION" datatype="System.String" isnull="False"/>
+    <column name="domaster.CMPID" text="CMPID" datatype="System.Int32" isnull="False"/>
+    <column name="domaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="dodetailmaster" text="dodetailmaster" object="dodetailmaster" pk="dodetailmaster.DOID">
+    <column name="dodetailmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="dodetailmaster.COALID" text="COALID" datatype="System.Int32" isnull="False"/>
+    <column name="dodetailmaster.DOID" text="DOID" datatype="System.Int32" isnull="False"/>
+    <column name="dodetailmaster.GRADE" text="GRADE" datatype="System.String" isnull="False"/>
+    <column name="dodetailmaster.QUANTITY" text="QUANTITY" datatype="System.Double" isnull="False"/>
+    <column name="dodetailmaster.BASICCHARGES" text="BASICCHARGES" datatype="System.Double" isnull="False"/>
+    <column name="dodetailmaster.SIZINGCHARGES" text="SIZINGCHARGES" datatype="System.Double" isnull="False"/>
+    <column name="dodetailmaster.BENIFITCHARGES" text="BENIFITCHARGES" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.STC" text="STC" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.SED" text="SED" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.MPRDTAX" text="MPRDTAX" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.TRANSITTAX" text="TRANSITTAX" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.ENTRYFEE" text="ENTRYFEE" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.ROYALTY" text="ROYALTY" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.CENTALEXCISE" text="CENTALEXCISE" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.CLEANENERGYNESS" text="CLEANENERGYNESS" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.VATCST" text="VATCST" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.TCS" text="TCS" datatype="System.Double" isnull="True"/>
+    <column name="dodetailmaster.TOTALAMOUNT" text="TOTALAMOUNT" datatype="System.Double" isnull="False"/>
+    <column name="dodetailmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+
+  <table name="coalmaster" text="coalmaster" object="coalmaster" pk="coalmaster.SRNO">
+    <column name="coalmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="coalmaster.COALTYPE" text="COALTYPE" datatype="System.String" isnull="False"/>
+    <column name="coalmaster.GRADE" text="GRADE" datatype="System.String" isnull="True"/>
+    <column name="coalmaster.COALTYPEID" text="COALTYPEID" datatype="System.Int32" isnull="True"/>
+   <column name="coalmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+  <table name="paymentmaster" text="paymentmaster" object="paymentmaster" pk="paymentmaster.SRNO">
+    <column name="paymentmaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="paymentmaster.RELATIONTYPE" text="RELATIONTYPE" datatype="System.String" isnull="True"/>
+    <column name="paymentmaster.RELATIONID" text="RELATIONID  " datatype="System.Int32" isnull="False"/>
+    <column name="paymentmaster.PAYMENTTYPE" text="PAYMENTTYPE" datatype="System.String" isnull="False"/>
+    <column name="paymentmaster.PAYMENTNO" text="PAYMENTNO" datatype="System.Int32" isnull="False"/>
+    <column name="paymentmaster.PAYMENTDATE" text="PAYMENTDATE" datatype="System.String" isnull="False"/>
+    <column name="paymentmaster.BANKNAME" text="BANKNAME" datatype="System.String" isnull="False"/>
+    <column name="paymentmaster.AMOUNT" text="AMOUNT" datatype="System.Double" isnull="False"/>
+    <column name="paymentmaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+  </table>
+  <table name="inventorymaster" text="inventorymaster" object="inventorymaster" pk="inventorymaster.SRNO">
+    <column name="inventorymaster.SRNO" text="SRNO" datatype="System.Int32" isnull="True" pk="True"/>
+    <column name="inventorymaster.DATE" text="DATE" datatype="System.String" isnull="False"/>
+    <column name="inventorymaster.CMPID" text="CMPID" datatype="System.Int32" isnull="False"/>
+    <column name="inventorymaster.COALID" text="COALID" datatype="System.Int32" isnull="False"/>
+    <column name="inventorymaster.COALTYPE" text="COALTYPE" datatype="System.String" isnull="False"/>
+    <column name="inventorymaster.GRADEID" text="GRADEID" datatype="System.Int32" isnull="False"/>
+    <column name="inventorymaster.GRADE" text="GRADE" datatype="System.String" isnull="False"/>
+    <column name="inventorymaster.QUANTITY" text="QUANTITY" datatype="System.Double" isnull="False"/>
+    <column name="inventorymaster.TYPE" text="TYPE" datatype="System.String" isnull="False"/>
+    <column name="inventorymaster.DOID" text="DOID" datatype="System.Int32" isnull="True"/>
+    <column name="inventorymaster.PARTYID" text="PARTYID" datatype="System.Int32" isnull="True"/>
+    <column name="inventorymaster.TRANSPORTERID" text="TRANSPORTERID" datatype="System.Int32" isnull="False"/>
+    <column name="inventorymaster.VEHICLEID" text="VEHICLEID" datatype="System.Int32" isnull="False"/>
+    <column name="inventorymaster.TRNASACTIONTYPE" text="TRNASACTIONTYPE" datatype="System.String" isnull="False"/>
+    <column name="inventorymaster.DEPOTID" text="DEPOTID" datatype="System.Int32" isnull="False"/>
+    <column name="inventorymaster.DESTINATION" text="DESTINATION" datatype="System.String" isnull="True"/>
+    <column name="inventorymaster.STATUS" text="STATUS" datatype="System.Int32" isnull="False"/>
+ </table>
+  
+</db_photostudio>

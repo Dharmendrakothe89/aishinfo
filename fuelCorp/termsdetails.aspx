@@ -1,0 +1,90 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpage.master" AutoEventWireup="true"
+    CodeFile="termsdetails.aspx.cs" Inherits="termsdetails" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="ValidationEngine.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.ucb.org.br/Scripts/formValidator/js/languages/jquery.validationEngine-en.js"
+        charset="utf-8"></script>
+    <script type="text/javascript" src="http://cdn.ucb.org.br/Scripts/formValidator/js/jquery.validationEngine.js"
+        charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#form1").validationEngine('attach', { promptPosition: "topRight" });
+        });
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <asp:ScriptManager ID="sc1" runat="server">
+    </asp:ScriptManager>
+    <div id="page-wrapper" style="margin-top: 20px;">
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <div runat="server" id="divadd" class="box bordered-box blue-border">
+                    <div class="box-header blue-background">
+                        <div class="title">
+                            &nbsp; Edit Terms
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <table cellpadding="5" cellspacing="5" border="0" width="100%">
+                            <tr>
+                                <td align="right" colspan="3" valign="top">
+                                    <asp:Button ID="btnedit1" runat="server" CssClass="btn btn-danger" Text="Edit" OnClick="btnedit_Click" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>
+                                        <strong>Category </strong>
+                                    </p>
+                                    <asp:DropDownList ID="ddleditcategory" runat="server" AutoPostBack="false" CssClass="form-control validate[required]">
+                                    </asp:DropDownList>
+                                </td>
+                                <td>
+                                    <p>
+                                        <strong>Sub Category </strong>
+                                    </p>
+                                    <asp:DropDownList ID="ddleditsubcategory" runat="server" AutoPostBack="false" CssClass="form-control validate[required]">
+                                    </asp:DropDownList>
+                                </td>
+                                <td>
+                                    <p>
+                                        <strong>Terms </strong>
+                                    </p>
+                                    <asp:TextBox ID="txteditterms" runat="server" Style="text-transform: uppercase;"
+                                        CssClass="form-control validate[required]"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>
+                                        <strong>Description </strong>
+                                    </p>
+                                    <asp:TextBox ID="txteditdescription" runat="server" Style="text-transform: capitalize;"
+                                        TextMode="MultiLine" Height="150px" CssClass="form-control"></asp:TextBox>
+                                </td>
+                                <td>
+                                    <p>
+                                        <strong>Status</strong>
+                                    </p>
+                                    <asp:DropDownList ID="ddlstatus" runat="server" AutoPostBack="false" CssClass="form-control">
+                                        <asp:ListItem Text="ACTIVE" Value="0"></asp:ListItem>
+                                        <asp:ListItem Text="DE-ACTIVE" Value="1"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <asp:Button ID="btnedit" runat="server" Visible="false" CssClass="btn btn-danger"
+                                        Text="Submit" OnClick="btnSave_Click" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>

@@ -1,0 +1,10 @@
+﻿ #GB_overlay {background-color: #fff;position: absolute;margin: auto;top: 0;left: 0;z-index: 100;}
+.forgotpasswordwrapper{width: 700px;border: 9px solid #0072BC;border-radius: 10px;padding: 10px;background:#fff;text-align: left;position: fixed; z-index: 999; top:101px; left:29%; height:500px;}
+.forgotpasswordwrapper h3{ background-color: #FBFBFB; border-bottom: 1px solid #62A901;    color: #0072BC;font-size: 18px;font-weight: 700;line-height: 28px; margin-left: -9px; margin-top: -10px; padding: 0; width:667px;}
+.forgotpasswordwrapper p { font-size:12px; margin-left:13px;}
+.forgotpasswordwrapper a {color:#0072BC; text-decoration:none;}
+.forgotpasswordwrapper a:hover:{color:#0072BC; text-decoration:none;}
+.getpasswordbtn{ border: 1px solid #0072BC; border-radius:10px; width:131px; height:30px;font-size:14px;font-weight:bold;color:#fff;margin-left:148px; background-color:#0072BC;}
+
+.advancedsearchwrapper h3{font: 14px Tahoma,Geneva,sans-serif;color: #0072BC; font-weight:bold;}
+.advancedPropertyContent {padding: 12px;height: 324px;overflow-y: scroll;overflow-x: hidden;}
