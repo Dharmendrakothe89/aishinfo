@@ -648,7 +648,7 @@ public partial class partydetails : System.Web.UI.Page
                     {
                         partytaxmaster objpartytax = new partytaxmaster(HttpContext.Current.Server.MapPath("~/XML/database.xml"));
                         objpartytax.partytaxmaster_SRNO = -1;
-                        objpartytax.partytaxmaster_PARTYID = General.Parse<int>(dtmax.Rows[0][0].ToString());
+                        objpartytax.partytaxmaster_PARTYID = General.Parse<int>(ViewState["PARTYID"].ToString());
                         objpartytax.partytaxmaster_TAXID = General.Parse<int>(dttax.Rows[k]["TAXID"].ToString());
                         objpartytax.partytaxmaster_TAXNAME = dttax.Rows[k]["TAXNAME"].ToString();
                         objpartytax.partytaxmaster_TAXVALUE = General.Parse<double>(dttax.Rows[k]["TAXVALUE"].ToString());
