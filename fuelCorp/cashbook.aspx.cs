@@ -28,7 +28,7 @@ public partial class cashbook : System.Web.UI.Page
         string sql = "SELECT PT.FIRSTNAME+' '+CASE WHEN PT.MIDDLENAME IS NULL THEN '' ELSE PT.MIDDLENAME END +' '+CASE WHEN PT.LASTNAME IS NULL THEN '' ELSE PT.LASTNAME END +'('+PR.ASSOSIATEDFEILD+')' AS LEDGER," +
                    " TT.AMOUNT,TT.VOUCHERTYPE,TT.TRANSDATE,TT.NARRATION,TT.LTRNTYPE2 AS LTRNTYPE FROM TRANSACTIONTABLE TT INNER JOIN PERSONALRELATION PR ON PR.SRNO=TT.LEDGER2" +
                    " INNER JOIN PERSONALTABLE PT ON PT.RELATIONSHIPID=PR.RELATIONSHIPID WHERE TT.BRANCHID =" + Session["branchid"].ToString() + " AND TT.STATUS=0 " +
-                   " AND TT.TRANSDATE BETWEEN '" + fromdate + "' AND '" + todate + "' AND"+
+                   " AND (convert(datetime, TT.TRANSDATE, 103) BETWEEN  convert(datetime, '" + fromdate.Trim().ToString() + "', 103) AND convert(datetime, '" + todate.Trim().ToString() + "', 103)) AND" +
                    " TT.LEDGER1=(SELECT SRNO FROM PERSONALRELATION PR1 INNER JOIN PERSONALTABLE PT1 ON PT1.RELATIONSHIPID=PR1.RELATIONSHIPID WHERE PT1.FIRSTNAME='CASH ACCOUNT' AND" +
                    " PT1.BRANCHID=" + Session["branchid"].ToString() + ") AND (TT.TRANSACTIONTYPE=1 OR TT.TRANSACTIONTYPE=2)";
         Handler hdn = new Handler();

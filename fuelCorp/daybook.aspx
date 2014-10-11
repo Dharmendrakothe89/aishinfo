@@ -11,25 +11,25 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="box bordered-box blue-border">
-                    <div class="box-header grey-background">
+                    <div class="box-header blue-background">
                         <div class="title">
-                            &nbsp; Godown Details
+                            &nbsp; Day Book
                         </div>
                     </div>
                     <div class="box-content">
                         <asp:UpdatePanel ID="uplist" runat="server">
                             <ContentTemplate>
                                 <table cellpadding="0" cellspacing="0" border="0" width="900px" align="center" style="border: lightslategrey">
-                                    <tr style="height: 40px; background-color: lightslategrey">
-                                        <td align="center" valign="middle">
-                                            FROM DATE &nbsp &nbsp<asp:TextBox ID="txtfromdate" runat="server"></asp:TextBox>
+                                    <tr style="height: 40px;">
+                                        <td align="left" valign="middle">
+                                            <asp:TextBox ID="txtfromdate" onkeyup="DateFormatValidation(this.id,this.value);" onkeypress="return isNumberWthOutDot(event);" CssClass="form-control" runat="server"></asp:TextBox>
                                         </td>
-                                        <td align="center" valign="middle">
-                                            TO DATE &nbsp &nbsp
-                                            <asp:TextBox ID="txttodate" runat="server"></asp:TextBox>
+                                        <td align="left" valign="middle">
+                                            
+                                            <asp:TextBox ID="txttodate" runat="server" onkeyup="DateFormatValidation(this.id,this.value);" onkeypress="return isNumberWthOutDot(event);" CssClass="form-control"></asp:TextBox>
                                         </td>
-                                        <td align="center" valign="middle">
-                                            <asp:Button ID="btnshow" runat="server" Text="Show" OnClick="btnshow_Click" />
+                                        <td align="right" valign="middle">
+                                            <asp:Button ID="btnshow" runat="server" Text="Show" CssClass="btn btn-danger" OnClick="btnshow_Click" />
                                         </td>
                                     </tr>
                                 </table>

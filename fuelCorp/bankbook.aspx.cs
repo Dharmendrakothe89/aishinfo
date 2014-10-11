@@ -56,7 +56,7 @@ public partial class bankbook : System.Web.UI.Page
                    " INNER JOIN PERSONALRELATION PRB ON PRB.SRNO=TT.LEDGER1 INNER JOIN PERSONALTABLE PTB ON PTB.RELATIONSHIPID=PRB.RELATIONSHIPID "+
                    " INNER JOIN PERSONALRELATION PR ON PR.SRNO=TT.LEDGER2" +
                    " INNER JOIN PERSONALTABLE PT ON PT.RELATIONSHIPID=PR.RELATIONSHIPID WHERE TT.BRANCHID =" + Session["branchid"].ToString() + " AND TT.STATUS=0 " +
-                   " AND TT.TRANSDATE BETWEEN '" + fromdate + "' AND '" + todate + "' AND" +
+                  " AND (convert(datetime, TT.TRANSDATE, 103) BETWEEN  convert(datetime, '" + fromdate.Trim().ToString() + "', 103) AND convert(datetime, '" + todate.Trim().ToString() + "', 103)) AND" +
                    " TT.LEDGER1 IN ("+sqlbank+" ) AND (TT.TRANSACTIONTYPE=3 OR TT.TRANSACTIONTYPE=4)";
         Handler hdn = new Handler();
         DataTable dt = hdn.GetTable(sql);

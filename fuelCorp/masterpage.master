@@ -94,7 +94,7 @@
                                 <li><a href="contravoucher.aspx">Contra Voucher</a> </li>
                                 <li><a href="creategeneralvoucher.aspx">Journal Voucher</a> </li>
                                 <li><a href="cashbook.aspx">Cash Book</a> </li>
-                                <li><a href="cashbook.aspx">Bank Book</a> </li>
+                                <li><a href="bankbook.aspx">Bank Book</a> </li>
                                 <li><a href="daybook.aspx">Day Book</a> </li>
                             </ul>
                         </li>
