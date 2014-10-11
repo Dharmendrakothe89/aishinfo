@@ -53,7 +53,8 @@ public partial class inwardlist : System.Web.UI.Page
         string sql = "SELECT IM.SRNO,IM.DATE,IM.SRNO,IM.COALTYPE,IM.GRADE,IM.QUANTITY,TM.TRANSPORTERNAME,VM.VEHICLENAME + '( ' + VM.VEHICLENO+' )' AS VEHICLENAME" +
                      " FROM INVENTORYMASTER IM INNER JOIN TRANSPORTERMASTER TM ON TM.SRNO=IM.TRANSPORTERID INNER JOIN VEHICLEMASTER VM ON VM.VEHICLEID=IM.VEHICLEID" +
                      " WHERE IM.STATUS=0 AND IM.TRNASACTIONTYPE='INWARD' AND IM.CMPID=" + Session["cmpid"].ToString() + " AND IM.DEPOTID=" + ddldepot.SelectedValue.Trim().ToString() + " AND" +
-                     " convert(datetime, IM.DATE, 103) >= '" + txtfromdate.Text + "' AND convert(datetime, IM.DATE, 103) <='" + txttodate.Text + "'";
+                     " (convert(datetime, IM.DATE, 103) >= convert(datetime, '" + txtfromdate.Text.Trim().ToString() + "', 103) AND convert(datetime, IM.DATE, 103) <= convert(datetime, '" + txttodate.Text.Trim().ToString() + "', 103))";
+                     //" convert(datetime, IM.DATE, 103) >= '" + txtfromdate.Text + "' AND convert(datetime, IM.DATE, 103) <='" + txttodate.Text + "'";
         Handler hdn = new Handler();
         DataTable dt = hdn.GetTable(sql);
     
