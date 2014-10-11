@@ -7,6 +7,17 @@
             __doPostBack("coal", "password");
         }
     </script>
+      <link href="ValidationEngine.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.ucb.org.br/Scripts/formValidator/js/languages/jquery.validationEngine-en.js"
+        charset="utf-8"></script>
+    <script type="text/javascript" src="http://cdn.ucb.org.br/Scripts/formValidator/js/jquery.validationEngine.js"
+        charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#form1").validationEngine('attach', { promptPosition: "topRight" });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:ScriptManager ID="sc1" runat="server">
