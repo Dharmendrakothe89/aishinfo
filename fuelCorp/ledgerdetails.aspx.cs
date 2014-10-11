@@ -98,7 +98,7 @@ public partial class ledgerdetails : System.Web.UI.Page
 
     protected void btnsubmit_Click(object sender, EventArgs e)
     {
-        if (hdnsecondledger.Value != string.Empty)
+        if (hdnsecondledger.Value != string.Empty && hdnsecondledger.Value != "undefined")
         {
             string sql = "SELECT PT.RELATIONSHIPID,(PT.FIRSTNAME+' '+CASE WHEN PT.LASTNAME IS NULL THEN ' ' ELSE PT.LASTNAME END ) AS NAME,PR.ASSOSIATEDFEILD,BRANCHNAME FROM PERSONALTABLE PT" +
                   " INNER JOIN PERSONALRELATION PR ON PR.RELATIONSHIPID=PT.RELATIONSHIPID" +
@@ -106,10 +106,10 @@ public partial class ledgerdetails : System.Web.UI.Page
             Handler hdn = new Handler();
             DataTable dt = hdn.GetTable(sql);
             ViewState["ledgerdata"] = dt;
-            gvledgerlist.DataSource = (DataTable)ViewState["ledgerdata"]; ;
+            gvledgerlist.DataSource = (DataTable)ViewState["ledgerdata"]; 
             gvledgerlist.DataBind();
         }
-        else
+        else if (txtsecondledger.Text.Trim() == string.Empty)
         {
             string sql = "SELECT PT.RELATIONSHIPID,(PT.FIRSTNAME+' '+CASE WHEN PT.LASTNAME IS NULL THEN ' ' ELSE PT.LASTNAME END ) AS NAME,PR.ASSOSIATEDFEILD,BRANCHNAME FROM PERSONALTABLE PT" +
                  " INNER JOIN PERSONALRELATION PR ON PR.RELATIONSHIPID=PT.RELATIONSHIPID" +
@@ -117,7 +117,13 @@ public partial class ledgerdetails : System.Web.UI.Page
             Handler hdn = new Handler();
             DataTable dt = hdn.GetTable(sql);
             ViewState["ledgerdata"] = dt;
-            gvledgerlist.DataSource = (DataTable)ViewState["ledgerdata"]; ;
+            gvledgerlist.DataSource = (DataTable)ViewState["ledgerdata"]; 
+            gvledgerlist.DataBind();
+        }
+        else
+        {
+            ViewState["ledgerdata"] = null;
+            gvledgerlist.DataSource = null;
             gvledgerlist.DataBind();
         }
     }

@@ -36,9 +36,11 @@ public partial class transactiondetails : System.Web.UI.Page
         string sql = "SELECT PT.FIRSTNAME+' '+CASE WHEN PT.MIDDLENAME IS NULL THEN '' ELSE PT.MIDDLENAME END +' '+CASE WHEN PT.LASTNAME IS NULL THEN '' ELSE PT.LASTNAME END +'('+PR.ASSOSIATEDFEILD+')' AS LEDGER," +
                    " TT.AMOUNT,TT.VOUCHERTYPE,TT.TRANSDATE,TT.NARRATION,TT.LTRNTYPE2 AS LTRNTYPE FROM TRANSACTIONTABLE TT INNER JOIN PERSONALRELATION PR ON PR.SRNO=TT.LEDGER2" +
                    " INNER JOIN PERSONALTABLE PT ON PT.RELATIONSHIPID=PR.RELATIONSHIPID WHERE TT.BRANCHID =" + Session["branchid"].ToString() + " AND TT.STATUS=0 " +
-                   " AND TT.TRANSDATE BETWEEN '" + fromdate + "' AND '" + todate + "' AND" +
+                   " AND (convert(datetime, TT.TRANSDATE, 103) BETWEEN  convert(datetime, '" + fromdate.Trim().ToString() + "', 103) AND convert(datetime, '" + todate.Trim().ToString() + "', 103)) AND" +
+                   //" AND TT.TRANSDATE BETWEEN '" + fromdate + "' AND '" + todate + "' AND" +
                    " TT.LEDGER1=(SELECT SRNO FROM PERSONALRELATION PR1 INNER JOIN PERSONALTABLE PT1 ON PT1.RELATIONSHIPID=PR1.RELATIONSHIPID WHERE PT1.FIRSTNAME='CASH ACCOUNT' AND" +
                    " PT.RELATIONSHIPID="+id+" AND PT1.BRANCHID=" + Session["branchid"].ToString() + ") AND (TT.TRANSACTIONTYPE=1 OR TT.TRANSACTIONTYPE=2)";
+        //" AND (convert(datetime, TT.TRANSDATE, 103) BETWEEN  convert(datetime, '" + fromdate.Trim().ToString() + "', 103) AND convert(datetime, '" + todate.Trim().ToString() + "', 103)) AND" +
         Handler hdn = new Handler();
         DataTable dt = hdn.GetTable(sql);
         string value = GetOpeningAmount(fromdate, id);
@@ -72,9 +74,11 @@ public partial class transactiondetails : System.Web.UI.Page
         string ltrntype = "Cr";
         string sqlopening1 = "SELECT CASE WHEN SUM(TT.AMOUNT)IS NULL THEN 0 ELSE SUM(TT.AMOUNT) END AS AMOUNT FROM TRANSACTIONTABLE TT" +
                           " INNER JOIN PERSONALRELATION PR ON PR.SRNO=TT.LEDGER2 INNER JOIN PERSONALTABLE PT ON PT.RELATIONSHIPID=PR.RELATIONSHIPID" +
-                          " WHERE TT.BRANCHID =" + Session["branchid"].ToString() + " AND TT.STATUS=0 AND TT.TRANSDATE < '" + fromdate + "' AND" +
-                          " TT.LEDGER1=(SELECT SRNO FROM PERSONALRELATION PR1 INNER JOIN PERSONALTABLE PT1 ON PT1.RELATIONSHIPID=PR1.RELATIONSHIPID WHERE PT1.FIRSTNAME='CASH ACCOUNT' AND" +
-                          " PT.RELATIONSHIPID=" + id + " AND PT1.BRANCHID=" + Session["branchid"].ToString() + ") AND TT.LTRNTYPE2='Cr'";
+                          " WHERE TT.BRANCHID =" + Session["branchid"].ToString() + " AND TT.STATUS=0 "+
+                          //" AND TT.TRANSDATE < '" + fromdate + "' AND" +
+                          " AND (convert(datetime, TT.TRANSDATE, 103) < convert(datetime, '" + fromdate.Trim().ToString() + "', 103)) AND" +
+                          " TT.LEDGER1=(SELECT SRNO FROM PERSONALRELATION PR1 INNER JOIN PERSONALTABLE PT1 ON PT1.RELATIONSHIPID=PR1.RELATIONSHIPID WHERE " +
+                          " PT1.RELATIONSHIPID=" + id + " AND PT1.BRANCHID=" + Session["branchid"].ToString() + ") AND TT.LTRNTYPE2='CR'";
 
         Handler hdnopening1 = new Handler();
         DataTable dtopening1 = hdnopening1.GetTable(sqlopening1);
@@ -85,9 +89,9 @@ public partial class transactiondetails : System.Web.UI.Page
 
         string sqlopening2 = "SELECT CASE WHEN SUM(TT.AMOUNT)IS NULL THEN 0 ELSE SUM(TT.AMOUNT) END AS AMOUNT FROM TRANSACTIONTABLE TT" +
                           " INNER JOIN PERSONALRELATION PR ON PR.SRNO=TT.LEDGER2 INNER JOIN PERSONALTABLE PT ON PT.RELATIONSHIPID=PR.RELATIONSHIPID" +
-                          " WHERE TT.BRANCHID =" + Session["branchid"].ToString() + " AND TT.STATUS=0 AND TT.TRANSDATE < '" + fromdate + "' AND" +
-                          " TT.LEDGER1=(SELECT SRNO FROM PERSONALRELATION PR1 INNER JOIN PERSONALTABLE PT1 ON PT1.RELATIONSHIPID=PR1.RELATIONSHIPID WHERE PT1.FIRSTNAME='CASH ACOUNT' AND" +
-                          " PT.RELATIONSHIPID=" + id + " AND PT1.BRANCHID=" + Session["branchid"].ToString() + ") AND TT.LTRNTYPE2='Dr'";
+                          " WHERE TT.BRANCHID =" + Session["branchid"].ToString() + " AND TT.STATUS=0 AND  (convert(datetime, TT.TRANSDATE, 103) < convert(datetime, '" + fromdate.Trim().ToString() + "', 103)) AND " +
+                          " TT.LEDGER1=(SELECT SRNO FROM PERSONALRELATION PR1 INNER JOIN PERSONALTABLE PT1 ON PT1.RELATIONSHIPID=PR1.RELATIONSHIPID WHERE " +
+                          " PT1.RELATIONSHIPID=" + id + " AND PT1.BRANCHID=" + Session["branchid"].ToString() + ") AND TT.LTRNTYPE2='DR'";
 
         Handler hdnopening2 = new Handler();
         DataTable dtopening2 = hdnopening2.GetTable(sqlopening2);
